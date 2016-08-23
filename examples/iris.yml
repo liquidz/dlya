@@ -1,0 +1,13 @@
+model:
+  layer:
+    - {type: dense,  in: 4,   out: 100}
+    - {type: output, in: 100, out: 3}
+
+train:
+  epoch: 5
+  dataset: {type: iris}
+
+evaluate:
+  dataset: {type: iris}
+  out-num: 3
+  show-stats: true

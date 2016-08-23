@@ -1,0 +1,41 @@
+vars:
+  in:   14
+  unit: 150
+  out:  3
+  bs:   20  # batch-size
+  dr:   0.9 # drop-out
+
+model:
+  # 保存済みのモデルをロード
+  # import: trained.model
+
+  seed: 123
+  learning-rate: 0.001
+  momentum: 0.98
+  regularization: true
+
+  layer:
+    - {type: dense,  in: $in,   out: $unit, drop-out: $dr}
+    - {type: dense,  in: $unit, out: $unit, drop-out: $dr}
+    - {type: dense,  in: $unit, out: $unit, drop-out: $dr}
+    - {type: output, in: $unit, out: $out}
+
+train:
+  epoch: 10
+  dataset: {type: csv, path: training.csv.conv, batch-size: $bs}
+  #listener: {score-iteration: 10}
+  export: trained.model
+
+evaluate:
+  - dataset: {type: csv, path: training.csv.conv, batch-size: $bs}
+    out-num: $out
+    show-accuracy: true
+  - dataset: {type: csv, path: validation.csv.conv, batch-size: $bs}
+    out-num: $out
+    show-accuracy: true
+  - dataset: {type: csv, path: test.csv.conv, batch-size: $bs}
+    out-num: $out
+    show-stats: true
+
+predict:
+  dataset: {type: csv, path: validation.csv.conv, batch-size: 20, no-label: true}

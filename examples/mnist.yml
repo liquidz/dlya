@@ -1,0 +1,29 @@
+vars:
+  out: 10
+  seed: 123
+  batch: 64
+
+model:
+  learning-rate: 0.0015
+  momentum: 0.98
+  regularization: true
+  l2: 0.0015
+  layer:
+    - {type: dense,  in: 784, out: 500}
+    - {type: dense,  in: 500, out: 100}
+    - {type: output, in: 100, out: $out}
+
+train:
+  epoch: 1
+  dataset: {type: mnist, seed: $seed, train: true, batch-size: $batch}
+  listener:
+    score-iteration: 200
+    #histgram-iteration: 200
+
+evaluate:
+  - out-num: $out
+    dataset: {type: mnist, seed: $seed, train: true, batch-size: $batch}
+    show-accuracy: true
+  - out-num: $out
+    dataset: {type: mnist, seed: $seed, train: false, batch-size: $batch}
+    show-stats: true

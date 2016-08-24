@@ -16,7 +16,7 @@
   [key & {:keys [method converter] :or {converter identity}}]
   (let [fn-name     (->> key name (str "set-") symbol)
         method-name (symbol (str "." (name (or method key))))]
-    `(defn ~fn-name
+    `(defn- ~fn-name
        [[builder# {v# ~key :as opt#}]]
        [(if v# (~method-name builder# (~converter v#)) builder#) opt#])))
 
@@ -32,7 +32,7 @@
 (def-setter-fn :backprop)
 (def-setter-fn :pretrain)
 
-(defn set-layer
+(defn- set-layer
   [[builder {v :layer :as opt}]]
   [(if v
      (let [lb (.list builder)]
@@ -42,7 +42,7 @@
      builder)
    opt])
 
-(def neural-net-default-config
+(def ^:private neural-net-default-config
   {:seed              123
    :iterations        1
    :optimization-algo "stochastic-gradient-descent"
@@ -52,7 +52,7 @@
    :backprop          true
    :pretrain          false})
 
-(defn neural-net-config
+(defn- neural-net-config
   [opt]
   (-> [(NeuralNetConfiguration$Builder.)
        (merge neural-net-default-config opt)]

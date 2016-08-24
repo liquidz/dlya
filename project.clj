@@ -3,8 +3,7 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [;[org.clojure/clojure                    "1.8.0"]
-                 [org.clojure/clojure                    "1.9.0-alpha11"]
+  :dependencies [[org.clojure/clojure                    "1.9.0-alpha11"]
                  [org.deeplearning4j/deeplearning4j-core "0.5.0"]
                  [org.deeplearning4j/deeplearning4j-ui   "0.5.0"]
                  [org.nd4j/nd4j-native-platform          "0.5.0"]
@@ -23,7 +22,7 @@
                        :main dlya.core
                        :dependencies [[org.clojure/tools.cli "0.3.5"]]}}
 
-  :plugins [[autodoc/lein-autodoc "1.1.1"]]
+  :plugins [[lein-codox "0.9.6"]]
   :autodoc { :name "Bugs", :page-title "Bugs API Documentation"}
   )
 

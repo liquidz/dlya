@@ -1,0 +1,13 @@
+model:
+  layer:
+    - {type: dense,  in: 2,  out: 10}
+    - {type: output, in: 10, out: 2}
+
+train:
+  epoch: 100
+  dataset: {type: list, contents: [[0, 0, 1], [0, 1, 0], [1, 0, 0], [1, 1, 1]]}
+
+evaluate:
+  dataset: {type: list, contents: [[0, 0, 1], [0, 1, 0], [1, 0, 0], [1, 1, 1]]}
+  out-num: 2
+  show-stats: true

@@ -10,8 +10,10 @@
                  [org.datavec/datavec-api                "0.5.0"]
                  [com.google.guava/guava                 "19.0"]
                  [circleci/clj-yaml                      "0.5.5"]
-                 [org.clojure/tools.cli                  "0.3.5"]]
-
+                 [org.clojure/tools.cli                  "0.3.5"]
+                 ;[google-apps-clj                        "0.5.3"]
+                 ;[clj-time                               "0.12.0"]
+                 ]
 
   :uberjar-name "dlya.jar"
   :main dlya.core
